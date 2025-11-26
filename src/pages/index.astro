@@ -6,10 +6,15 @@ import Layout from "../layouts/Layout.astro";
   <main>
     <h1>Welcome to Astro</h1>
     <p>Your Google Tag Manager is now running in a web worker!</p>
-    <!-- <button
-      onclick="window.dataLayer.push({ event: 'button_click', button_name: 'subscribe' })"
-    >
-      Track Custom Event
-    </button> -->
+    <button track-me> Track Custom Event </button>
   </main>
+  <script type="text/partytown">
+    document.querySelectorAll("button[track-me]").forEach((button) => {
+      button.addEventListener("click", () => {
+        dataLayer.push({
+          event: "button_click",
+        });
+      });
+    });
+  </script>
 </Layout>
